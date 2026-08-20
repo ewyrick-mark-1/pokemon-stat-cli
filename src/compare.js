@@ -69,12 +69,14 @@ async function fetch_pokemon(pokemon_names){                                // g
     
     for(let i = 0; i < promises.length; i += concurrent_limit){             //concurrent limit, limits how hard the API it hit.
         
+        let upper;
+
         if(i + concurrent_limit > promises.length){                         //prevent out of bounds index
             upper = promises.length;
         }else{                                                              //assign upper chunk bound to lower bound + offset
             upper = i + concurrent_limit
         }
-        promises_lim = promises.slice(i, upper);                            //chunk promises
+        const promises_lim = promises.slice(i, upper);                            //chunk promises
         await Promise.all(promises_lim);                                    //await 
     }
     
