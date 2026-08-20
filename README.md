@@ -14,7 +14,8 @@ If you are interested in running testing on it, open terminal and run 'npm insta
 
 ## How to run:
 
-Make sure you are in the termaial, specifically in the project directory. I found that running the commands in comand promt was the most consitent on windows, due to some script limitations in powershell.
+Make sure you are in the termaial, specifically in the project directory. I found that running the commands in command prompt was the most consistent on windows, due to some script limitations in powershell.
+
 
 The three main commands to run are the following:
 ```
@@ -36,6 +37,16 @@ A few examples follow:
 - npm run start -- search pikachu skarmory
 - npm run start -- list --type electric --page 2 --pagesize 25
 - npm run start -- compare pikachu charizard skarmory --stat spd def hp
+```
+
+Note: As of version 1.1, you can build an executable (verified only on mac) by running "npm run build" from the project directory. This will create a dist folder, where the executable will land. The only difference between the following methods for running the program and the compiled version is that you can drop the leading --. 
+
+A few compiled examples:
+
+```
+./pokemon-stat-cli search pikachu skarmory
+./pokemon-stat-cli list --type electric --page 2 --pagesize 25
+./pokemon-stat-cli compare pikachu charizard skarmory --stat spd def hp
 ```
 
 More examples of commands can be found in the commands for testing section, under valid commands.
