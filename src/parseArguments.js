@@ -25,7 +25,7 @@ function parseArguments(args){
     if((MAIN_COMMAND in inputConfiguration.commands)){
         if(MAIN_COMMAND === 'HELP'){                                                                                        //help special case, output help text to terminal and quit
             console.log(inputConfiguration.commands.HELP.help_text);
-            return 0;
+            return { main_command: 'HELP', arguments: {}, global_flags: parsed.global_flags };
         }
         parsed.main_command = MAIN_COMMAND;                                                                                 //start building parsed- set the main command
         parsed.arguments = {...inputConfiguration.commands[MAIN_COMMAND].argument_list};                                    //start building parsed- init the arguments and their types
