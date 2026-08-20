@@ -46,7 +46,7 @@ There is one known bug with testing. Sometimes, concurrent API calls can cause a
 ##  How to add a new command:
 To add a new command there are a few things you will have to do. 
 1. Add your command and its arguments to inputConfiguration.json under commands.
-A good exapmle entry is list:
+A good example entry is list:
 ```
 "commands" : {
     ...
@@ -77,7 +77,14 @@ A good exapmle entry is list:
 }
 ```
 2. create a new js file (using the specified function name in inputConfiguration.json) in src to implement your command.
-
+3. Define the file path in index.js 
+```
+const list = require('./list.js');
+```
+4. Add the command name to commandFunctions in index.js
+```
+const commandFunctions = (search, list, compare);  
+```
 
 ##  Project Structure:
 This project is structured to keep things simple and easy to read. using a general command and arguments, the general path follows:

@@ -42,12 +42,13 @@ async function fetchPokemon(pokemon_names){     //performs API call for all poke
 
         for(let i = 0; i < promises.length; i += concurrent_limit){         //concurrent limit, limits how hard the API it hit.
         
+        let upper;
         if(i + concurrent_limit > promises.length){                         //prevent out of bounds index
             upper = promises.length;
         }else{                                                              //assign upper chunk bound to lower bound + offset
             upper = i + concurrent_limit
         }
-        promises_lim = promises.slice(i, upper);                            //chunk promises
+        const promises_lim = promises.slice(i, upper);                      //chunk promises
         await Promise.all(promises_lim);                                    //await 
         }
     
@@ -58,8 +59,8 @@ async function pokemonStats(pokemonCache,  json_flag, no_cache){
 
     let output = {}                                                     //define output
 
-    for(pokemon_name in pokemonCache){                                  //iterates through cache
-        pokemon = pokemonCache[pokemon_name];                           //assign current pokemon
+    for(const pokemon_name in pokemonCache){                                  //iterates through cache
+        const pokemon = pokemonCache[pokemon_name];                           //assign current pokemon
         let stats = {                                                   //assign all stats to defined output elements structure
             "id"            : pokemon.id,
             "name"          : pokemon.name,
