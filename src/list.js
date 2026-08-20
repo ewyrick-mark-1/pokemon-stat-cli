@@ -16,8 +16,8 @@ function checkInputs(inputs){                   //basic logic to check if inputs
 function tableFormat(output){                                                                           //function to better format output for tables. page would run long otherwise.
     let formattedOutput = [];
 
-    for (type in output) {
-        for (id in output[type]) {
+    for (const type in output) {
+        for (const id in output[type]) {
             formattedOutput.push({'type': type, 'id': id, 'name': output[type][id]});                   //four col, | index | type | id | name|
     }
   }
@@ -43,23 +43,25 @@ async function fetchList(types){
     
     for(let i = 0; i < promises.length; i += concurrent_limit){             //concurrent limit, limits how hard the API it hit.
         
+        let upper;
+
         if(i + concurrent_limit > promises.length){                         //prevent out of bounds index
             upper = promises.length;
         }else{                                                              //assign upper chunk bound to lower bound + offset
             upper = i + concurrent_limit
         }
-        promises_lim = promises.slice(i, upper);                            //chunk promises
+        const promises_lim = promises.slice(i, upper);                            //chunk promises
         await Promise.all(promises_lim);                                    //await 
     }
     return listCache;
 }
 
 function formatList(listCache, page, pageSize,json_flag, no_cache){
-    output = {};
-    for(pokemon_type in listCache){                                                                     //iterate through cache
+    let output = {};
+    for(const pokemon_type in listCache){                                                                     //iterate through cache
 
-        list = listCache[pokemon_type];
-        list_paginated = {};
+        const list = listCache[pokemon_type];
+        const list_paginated = {};
 
         for(let i = page * pageSize; i<(pageSize + page * pageSize)&&i < list.pokemon.length; i++){     //itterate through the page that was pulled
 
